@@ -3,7 +3,6 @@
 import json
 import logging
 from typing import Any, Mapping, Optional
-
 from annoying.fields import AutoOneToOneField
 from core.feature_flags import flag_set
 from core.label_config import (
@@ -46,6 +45,7 @@ from projects.functions import (
     annotate_useful_annotation_number,
 )
 from projects.functions.utils import make_queryset_from_iterable
+from projects.signals import ProjectSignals
 from tasks.models import (
     Annotation,
     AnnotationDraft,
@@ -658,6 +658,10 @@ class Project(ProjectMixin, models.Model):
 
     def _label_config_has_changed(self):
         return self.label_config != self.__original_label_config
+    
+    @property
+    def label_config_is_not_default(self):
+        return self.label_config != Project._meta.get_field('label_config').default
 
     def should_none_model_version(self, model_version):
         """
@@ -742,6 +746,9 @@ class Project(ProjectMixin, models.Model):
 
         if self._label_config_has_changed():
             self.__original_label_config = self.label_config
+            # if tasks are already imported, emit signal that project is configured and ready for labeling
+            if self.num_tasks > 0:
+                ProjectSignals.post_label_config_and_import_tasks.send(sender=Project, project=self)
 
         super(Project, self).save(*args, update_fields=update_fields, **kwargs)
 

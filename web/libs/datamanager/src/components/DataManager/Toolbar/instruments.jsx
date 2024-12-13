@@ -15,6 +15,7 @@ import { LoadingPossum } from "./LoadingPossum";
 import { OrderButton } from "./OrderButton";
 import { RefreshButton } from "./RefreshButton";
 import { ViewToggle } from "./ViewToggle";
+import { InfoBanner } from "./InfoBanner";
 
 const style = {
   minWidth: "110px",
@@ -117,6 +118,9 @@ export const instruments = {
   },
   "error-box": () => {
     return <ErrorBox />;
+  },
+  "info-banner": () => {
+    return <InfoBanner />;
   },
   "import-button": ({ size }) => {
     return (

@@ -19,7 +19,11 @@ logger = logging.getLogger(__name__)
 
 
 def async_import_background(
-    import_id, user_id, recalculate_stats_func: Optional[Callable[..., None]] = None, **kwargs
+    import_id,
+    user_id,
+    recalculate_stats_func: Optional[Callable[..., None]] = None,
+    callback_func: Optional[Callable[..., None]] = None,
+    **kwargs
 ):
     with transaction.atomic():
         try:
