@@ -21,6 +21,7 @@ export const Toolbar = injector(
             <Space size="small" key={`section-${i}`}>
               {section.map((instrument, i) => {
                 const Instrument = store.SDK.getInstrument(instrument);
+
                 return Instrument ? (
                   <Instrument key={`instrument-${instrument}-${i}`} size={isNewUI ? "large" : "medium"} />
                 ) : null;
