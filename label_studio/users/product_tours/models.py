@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 
 
 class TourState(str, Enum):
+    READY = "ready"
     COMPLETED = "completed" 
     SKIPPED = "skipped"
 
@@ -35,8 +36,8 @@ class UserTour(models.Model):
     state = models.CharField(
         max_length=32,
         choices=[(state.value, state.value) for state in TourState],
-        default=TourState.COMPLETED.value,
-        help_text='Current state of the tour for this user'
+        default=TourState.READY.value,
+        help_text='Current state of the tour for this user: "ready" when tour is initiated, "completed" when user finishes the tour, "skipped" when user cancels the tour.'
     )
 
     interaction_data = models.JSONField(
