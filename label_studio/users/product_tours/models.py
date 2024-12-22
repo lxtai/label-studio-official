@@ -1,14 +1,14 @@
 from enum import Enum
 from typing import Any, Dict, Optional
-
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 from pydantic import BaseModel, Field
 
 
-class ProductTourState(str, Enum):
-    READY = 'ready'
-    COMPLETED = 'completed'
-    SKIPPED = 'skipped'
+class ProductTourState(models.TextChoices):
+    READY = 'ready', _('Ready')
+    COMPLETED = 'completed', _('Completed')
+    SKIPPED = 'skipped', _('Skipped')
 
 
 class ProductTourInteractionData(BaseModel):
@@ -31,18 +31,23 @@ class UserProductTour(models.Model):
     )
 
     name = models.CharField(
-        max_length=256, help_text='Unique identifier for the product tour. Name must match the config name.'
+        _('Name'),
+        max_length=256,
+        help_text='Unique identifier for the product tour. Name must match the config name.'
     )
 
     state = models.CharField(
+        _('State'),
         max_length=32,
-        choices=[(state.value, state.value) for state in ProductTourState],
-        default=ProductTourState.READY.value,
-        help_text='Current state of the tour for this user: "ready" when tour is initiated, "completed" when user finishes the tour, "skipped" when user cancels the tour.',
+        choices=ProductTourState.choices,
+        default=ProductTourState.READY,
+        help_text=f'Current state of the tour for this user. Available options: {", ".join(f"{k} ({v})" for k,v in ProductTourState.choices)}',
     )
 
     interaction_data = models.JSONField(
-        default=dict, blank=True, help_text='Additional data about user interaction with the tour'
+        _('Interaction Data'),
+        default=dict, blank=True,
+        help_text='Additional data about user interaction with the tour'
     )
 
     created_at = models.DateTimeField(auto_now_add=True, help_text='When this tour record was created')
