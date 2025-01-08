@@ -200,22 +200,6 @@ module.exports = composePlugins(
       }
     });
 
-    // tailwindcss
-    config.module.rules.push({
-      test: /tailwind\.css/,
-      exclude: /node_modules/,
-      use: [
-        "style-loader",
-        {
-          loader: "css-loader",
-          options: {
-            importLoaders: 1,
-          },
-        },
-        "postcss-loader",
-      ],
-    });
-
     config.module.rules.push(
       {
         test: /\.svg$/,
@@ -242,6 +226,21 @@ module.exports = composePlugins(
         options: {
           name: "[name].[ext]",
         },
+      },
+      // tailwindcss
+      {
+        test: /tailwind\.css/,
+        exclude: /node_modules/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+            },
+          },
+          "postcss-loader",
+        ],
       },
     );
 
