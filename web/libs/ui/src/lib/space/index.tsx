@@ -1,4 +1,4 @@
-import { cn } from "@humansignal/ui/shad/utils";
+import { cn } from "@humansignal/shad/utils";
 import styles from "./Space.module.scss";
 import type { CSSProperties, PropsWithChildren } from "react";
 
@@ -22,26 +22,20 @@ export const Space = ({
   stretch,
   align,
 }: SpaceProps) => {
-  const cls = [styles.space];
+  const clsToggle = {
+    [styles.spread]: spread,
+    [styles.stretch]: stretch,
+    [styles.sizeSmall]: size === "small",
+    [styles.sizeLarge]: size === "large",
+  };
 
-  if (spread) cls.push(styles.spread);
-  if (stretch) cls.push(styles.stretch);
+  const clsList: string[] = [
+    direction === "vertical" ? styles.directionVertical : styles.directionHorizontal,
+    align === "end" ? styles.alignEnv : styles.alignStart,
+  ];
 
-  cls.push(direction === "vertical" ? styles.directionVertical : styles.directionHorizontal);
-  cls.push(align === "end" ? styles.alignEnv : styles.alignStart);
-
-  switch (size) {
-    case "small":
-      cls.push(styles.sizeSmall);
-      break;
-    case "large":
-      cls.push(styles.sizeLage);
-      break;
-  }
-
-  if (className) cls.push(className);
   return (
-    <div className={cn(...cls)} style={style}>
+    <div className={cn(styles.space, clsToggle, clsList, className)} style={style}>
       {children}
     </div>
   );

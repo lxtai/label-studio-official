@@ -68,6 +68,7 @@ module.exports = {
         lsPrimaryContent: "#4C5FA9",
         lsSubtitle: "#6B6860",
         lsPrimaryEmphasisSubtle: "#F0F3FE",
+        lsNaturalSurface: "#F9F8F6",
         lsNeutralBorderSubtle: "#E1DED5",
         lsNeutralContent: "#262522",
         lsNeutralContentSubtler: "#6B6860",
@@ -95,7 +96,7 @@ module.exports = {
         lsLabelMedium: ["16px", "24px"],
         lsLabelSmall: ["14px", "8px"],
         lsLabelSmaller: ["12px", "16px"],
-        lsLabelSmallest: ["11px", "16px"]
+        lsLabelSmallest: ["11px", "16px"],
       },
       spacing: {
         4.5: "1.125rem",

@@ -1,16 +1,16 @@
-import { CSSProperties } from "react";
+import type { CSSProperties } from "react";
 import styles from "./Spinner.module.scss";
-import { cn } from "@humansignal/ui/shad/utils";
+import { cn } from "@humansignal/shad/utils";
 
 export type SpinnerProps = {
-  className?: string,
-  style?: CSSProperties,
-  size?: number
-  stopped?: boolean
-}
+  className?: string;
+  style?: CSSProperties;
+  size?: number;
+  stopped?: boolean;
+};
 
 export const Spinner = ({ className, style, size = 32, stopped = false }: SpinnerProps) => {
-  const fullClassName = cn(styles.spinner, className)
+  const fullClassName = cn(styles.spinner, className);
   const bodyClassName = cn(styles.body, stopped ? styles.stopped : "");
 
   const sizeWithUnit = typeof size === "number" ? `${size}px` : size;

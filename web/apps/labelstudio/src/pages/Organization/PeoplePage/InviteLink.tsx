@@ -4,7 +4,7 @@ import { Input } from "../../../components/Form";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { copyText } from "apps/labelstudio/src/utils/helpers";
 import { Space } from "@humansignal/ui";
-import { Button } from "@humansignal/ui/shad/components/ui/button";
+import { Button } from "@humansignal/shad/components/ui/button";
 import { API } from "apps/labelstudio/src/providers/ApiProvider";
 import { atomWithQuery } from "jotai-tanstack-query";
 import { useAtomValue } from "jotai";
