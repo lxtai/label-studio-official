@@ -227,7 +227,7 @@ class RelationsOverlay extends PureComponent {
             <title>{this.state.shouldRender ? "Arrow Marker" : ""}</title>
             {this.state.shouldRender && this.renderRelations(relations, visible, hasHighlight, highlighted)}
             {
-              // mowing a highlighted relation into the foreground
+              // moving a highlighted relation into the foreground
               highlighted ? <use xlinkHref={`#${highlighted.id}`} /> : null
             }
           </svg>
