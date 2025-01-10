@@ -1,6 +1,6 @@
 {
-  "message": "feat: OPTIC-1332: componetize Toggle and Label components (#6723)",
-  "commit": "281ef778e277bdf3d6cd06b1a75985acc51f2c8c",
-  "date": "2025-01-03T13:35:43.000Z",
+  "message": "refactor: OPTIC-1506: Remove Stale Feature Flag - fflag_fix_front_dev_3350_restrict_drawing_area_short (#6878)",
+  "commit": "a38cd76ecf6df705f452615fe9a22e77ba0ceb86",
+  "date": "2025-01-09T19:28:27.000Z",
   "branch": "develop"
 }
